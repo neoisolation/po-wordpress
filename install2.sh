@@ -328,10 +328,11 @@ echo 'fast_server:' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  enabled: true' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
+echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
-systemctl stop postal;
-systemctl restart postal;
+su postal -c 'postal stop';
+sleep 5
+su postal -c 'postal restart';
 
 cd /var/lib/docker/wordpress;
 
