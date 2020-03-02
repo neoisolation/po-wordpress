@@ -262,7 +262,7 @@ sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wor
 echo "server {
     listen [::]:8089;
     listen 8089;
-    server_name track.postal.neo-isolation.fr;
+    server_name track.postal.$1;
     return 301 https://$host$request_uri;
 }
 
@@ -270,7 +270,7 @@ server {
     listen [::]:9443 ssl;
     listen 9443 ssl;
     root /opt/postal/app/public;
-    server_name track.postal.neo-isolation.fr;
+    server_name track.postal.$1;
     ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/signed.crt;
     ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/domain.key;
 
@@ -310,6 +310,7 @@ echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
+systemctl stop postal;
 systemctl restart postal;
 
 cd /var/lib/docker/wordpress;
