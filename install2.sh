@@ -279,25 +279,34 @@ sleep 2
 echo "server {
     listen [::]:8089;
     listen 8089;
-    server_name track.postal.$1;
+    server_name track.postal.neo-isolation.fr;
     return 301 https://$host$request_uri;
 }
+
 server {
     listen [::]:9443 ssl;
     listen 9443 ssl;
     root /opt/postal/app/public;
-    server_name track.postal.$1;
-    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/signed.crt;
-    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/domain.key;
+    server_name track.postal.neo-isolation.fr;
+    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.neo-isolation.fr/production/signed.crt;
+    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.neo-isolation.fr/production/domain.key;
+
     # Generate using: openssl dhparam 4096 -out /etc/ssl/dhparam.pem
     # ssl_dhparam /etc/ssl/dhparam.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA512:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:ECDH+AESGCM:ECDH+AES256:DH+AESGCM:DH+AES256:RSA+AESGCM:!aNULL:!eNULL:!LOW:!RC4:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
+
     location / {
        client_max_body_size 50M;
        try_files $uri $uri/index.html $uri.html @puma;
     }
+
     location /assets {
        add_header Cache-Control max-age=3600;
     }
+
     location @puma {
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header Host $host;
