@@ -186,8 +186,8 @@ services:
       DOMAINS: >-
           $1 -> http://172.20.128.4,
           www.$1 -> http://172.20.128.4,
-          track.postal.neo-isolation.fr -> https://172.17.0.1:9443,
-          click.postal.neo-isolation.fr -> https://172.17.0.1:9443,          
+          track.postal.$1 -> https://172.17.0.1:9443,
+          click.postal.$1 -> https://172.17.0.1:9443,          
           postal.$1 -> https://172.17.0.1:8443
     volumes:
       - ./conf.d:/etc/nginx/conf.d/:rw
