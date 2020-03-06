@@ -33,6 +33,7 @@ firewall-cmd --add-port=465/tcp --permanent;
 
 firewall-cmd --add-port=8000/tcp --permanent;
 firewall-cmd --add-port=8082/tcp --permanent;
+firewall-cmd --add-port=8080/tcp --permanent;
 firewall-cmd --add-port=8443/tcp --permanent;
 firewall-cmd --add-port=5000/tcp --permanent;
 firewall-cmd --add-port=8089/tcp --permanent;
