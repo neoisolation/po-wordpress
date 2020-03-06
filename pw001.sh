@@ -284,7 +284,7 @@ networks:
           ip_range: 172.28.5.0/24
 "> /var/lib/docker/wordpress/docker-compose.yml;
 
-cd /var/lib/docker/wordpress
+cd /var/lib/docker/wordpress;
 
 sed -i -r "s/.*tls_certificate_path.*/  tls_certificate_path: \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/signed.crt/g" /opt/postal/config/postal.yml;
 sed -i -r "s/.*tls_private_key_path.*/  tls_private_key_path: \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/domain.key/g" /opt/postal/config/postal.yml;
@@ -293,6 +293,10 @@ sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wor
 
 docker-compose up -d;
 sleep 60
+docker-compose stop;
+sleep 10
+docker-compose up -d;
+sleep 20
 su postal -c 'postal restart';
 sleep 5
 postal make-user;
