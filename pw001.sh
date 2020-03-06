@@ -366,9 +366,9 @@ su postal -c 'postal restart';
 cd /var/lib/docker/wordpress;
 
 docker-compose stop;
-sleep 5
-docker-compose up -d;
 sleep 10
+docker-compose up -d;
+sleep 20
 service nginx restart;
 
 #
