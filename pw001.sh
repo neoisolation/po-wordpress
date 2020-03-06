@@ -298,9 +298,9 @@ sleep 5
 postal make-user;
 sleep 2
 service postal restart;
-sleep 2
+sleep 5
 service nginx restart;
-sleep 2
+sleep 5
 #
 #
 #
@@ -366,9 +366,9 @@ su postal -c 'postal restart';
 cd /var/lib/docker/wordpress;
 
 docker-compose stop;
-sleep 2
-docker-compose up -d;
 sleep 5
+docker-compose up -d;
+sleep 10
 service nginx restart;
 
 #
