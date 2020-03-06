@@ -317,8 +317,8 @@ server {
     listen 9443 ssl;
     root /opt/postal/app/public;
     server_name track.postal.$1;
-    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.neo-isolation.fr/production/signed.crt;
-    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.neo-isolation.fr/production/domain.key;
+    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/signed.crt;
+    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.$1/production/domain.key;
 
     # Generate using: openssl dhparam 4096 -out /etc/ssl/dhparam.pem
     # ssl_dhparam /etc/ssl/dhparam.pem;
@@ -341,7 +341,7 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-        proxy_pass https://172.17.0.1:11443;
+        proxy_pass http://172.17.0.1:8080;
     }
 }
 "> /etc/nginx/sites-available/fast;
