@@ -299,7 +299,6 @@ postal make-user;
 sleep 2
 service postal restart;
 sleep 2
-service nginx stop;
 service nginx restart;
 sleep 2
 #
