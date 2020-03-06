@@ -31,12 +31,15 @@ firewall-cmd --add-port=2525/tcp --permanent;
 firewall-cmd --add-port=587/tcp --permanent;
 firewall-cmd --add-port=465/tcp --permanent;
 
+firewall-cmd --add-port=8000/tcp --permanent;
 firewall-cmd --add-port=8082/tcp --permanent;
 firewall-cmd --add-port=8443/tcp --permanent;
 firewall-cmd --add-port=5000/tcp --permanent;
 firewall-cmd --add-port=8089/tcp --permanent;
 firewall-cmd --add-port=9443/tcp --permanent;
 firewall-cmd --add-port=11443/tcp --permanent;
+firewall-cmd --add-port=783/tcp --permanent;
+firewall-cmd --add-port=3306/tcp --permanent;
 
 firewall-cmd --add-masquerade --permanent;
 firewall-cmd --add-forward-port=port=2525:proto=tcp:toport=25 --permanent;
@@ -339,7 +342,7 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass https://172.17.0.1:11443;
     }
 }
 "> /etc/nginx/sites-available/fast;
@@ -353,7 +356,7 @@ sed -i".bak" '7,12d' /opt/postal/config/postal.yml;
 echo '' | sudo tee -a /opt/postal/config/postal.yml;
 echo 'fast_server:' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  enabled: true' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
+echo '  bind_address: 172.17.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
