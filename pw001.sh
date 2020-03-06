@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 domain=$1;
 
 # This will install everything required to run a basic Postal installation.
