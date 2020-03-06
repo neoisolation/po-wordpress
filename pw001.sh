@@ -30,7 +30,7 @@ firewall-cmd --add-port=25/tcp --permanent;
 firewall-cmd --add-port=2525/tcp --permanent;
 firewall-cmd --add-port=587/tcp --permanent;
 firewall-cmd --add-port=465/tcp --permanent;
-
+firewall-cmd --add-port=3306/tcp --permanent;
 firewall-cmd --add-port=8000/tcp --permanent;
 firewall-cmd --add-port=8082/tcp --permanent;
 firewall-cmd --add-port=8080/tcp --permanent;
@@ -292,9 +292,9 @@ sed -i -r "s/.*postal.cert.*/    ssl_certificate          \/var\/lib\/docker\/wo
 sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/domain.key;/g" /etc/nginx/sites-available/default;
 
 docker-compose up -d;
-sleep 15
-service postal restart;
-sleep 2
+sleep 10
+su postal -c 'postal restart';
+sleep 5
 postal make-user;
 sleep 2
 service postal restart;
