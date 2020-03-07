@@ -363,8 +363,6 @@ echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
-su postal -c 'postal stop';
-sleep 5
 su postal -c 'postal restart';
 
 cd /var/lib/docker/wordpress;
