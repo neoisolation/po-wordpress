@@ -306,7 +306,7 @@ sleep 5
 #
 #
 #
-
+chmod 777 /var/lib/docker/wordpress/wp-content
 echo "server {
     listen [::]:8089;
     listen 8089;
