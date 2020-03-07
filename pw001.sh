@@ -196,9 +196,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
-    networks:
-      static-network:
-        ipv4_address: 172.20.128.2
+    network_mode: host
     restart: always
     environment:
       STAGE: 'production'
@@ -296,7 +294,7 @@ sleep 60
 docker-compose stop;
 sleep 10
 docker-compose up -d;
-sleep 20
+sleep 30
 su postal -c 'postal restart';
 sleep 5
 postal make-user;
@@ -313,7 +311,7 @@ echo "server {
     listen [::]:8089;
     listen 8089;
     server_name track.postal.$1;
-    return 301 https://$host$request_uri;
+    return 301 https:\/\/$host$request_uri;
 }
 
 server {
@@ -330,7 +328,9 @@ server {
     ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
     ssl_prefer_server_ciphers on;
     ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA512:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:ECDH+AESGCM:ECDH+AES256:DH+AESGCM:DH+AES256:RSA+AESGCM:!aNULL:!eNULL:!LOW:!RC4:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
-
+    set_real_ip_from 0.0.0.0/0;
+    real_ip_header X-Forwarded-For;
+    real_ip_recursive on;
     location / {
        client_max_body_size 50M;
        try_files $uri $uri/index.html $uri.html @puma;
@@ -372,7 +372,7 @@ cd /var/lib/docker/wordpress;
 docker-compose stop;
 sleep 10
 docker-compose up -d;
-sleep 20
+sleep 30
 service nginx restart;
 
 #
