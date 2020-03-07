@@ -345,7 +345,7 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-        proxy_pass http://172.17.0.1:8080;
+        proxy_pass http://127.0.0.1:8080;
     }
 }
 "> /etc/nginx/sites-available/fast;
@@ -359,7 +359,7 @@ sed -i".bak" '7,12d' /opt/postal/config/postal.yml;
 echo '' | sudo tee -a /opt/postal/config/postal.yml;
 echo 'fast_server:' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  enabled: true' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  bind_address: 172.17.0.1' | sudo tee -a /opt/postal/config/postal.yml;
+echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
