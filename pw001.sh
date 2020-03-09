@@ -290,7 +290,7 @@ sed -i -r "s/.*tls_private_key_path.*/  tls_private_key_path: \/var\/lib\/docker
 sed -i -r "s/.*postal.cert.*/    ssl_certificate          \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/signed.crt;/g" /etc/nginx/sites-available/default;
 sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/domain.key;/g" /etc/nginx/sites-available/default;
 
-docker-compose up;
+docker-compose up -d;
 sleep 120
 docker-compose stop;
 sleep 10
