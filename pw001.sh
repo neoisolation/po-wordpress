@@ -293,7 +293,7 @@ sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wor
 free -h && sudo sysctl vm.drop_caches=3 && free -h
 
 docker-compose up -d;
-sleep 120
+sleep 240
 docker-compose stop;
 sleep 10
 docker-compose up -d;
