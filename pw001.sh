@@ -294,7 +294,7 @@ sleep 120
 su postal -c 'postal restart';
 sleep 5
 postal make-user;
-sleep 2
+sleep 5
 service postal restart;
 sleep 10
 service nginx restart;
@@ -330,12 +330,6 @@ echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
 su postal -c 'postal restart';
 
-cd /var/lib/docker/wordpress;
-
-docker-compose stop;
-sleep 10
-docker-compose up -d;
-sleep 30
 service nginx restart;
 
 #
