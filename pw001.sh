@@ -292,6 +292,12 @@ sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wor
 
 docker-compose up -d;
 sleep 120
+docker-compose stop;
+sleep 10
+docker-compose up -d;
+sleep 30
+service docker restart;
+sleep 10
 su postal -c 'postal restart';
 sleep 5
 postal make-user;
