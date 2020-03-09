@@ -290,17 +290,19 @@ sed -i -r "s/.*postal.cert.*/    ssl_certificate          \/var\/lib\/docker\/wo
 sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/domain.key;/g" /etc/nginx/sites-available/default;
 
 docker-compose up -d;
-sleep 60
+sleep 90
 docker-compose stop;
-sleep 15
+sleep 20
 docker-compose up -d;
-sleep 45
+sleep 60
+service docker restart;
+sleep 30
 su postal -c 'postal restart';
 sleep 5
 postal make-user;
 sleep 2
 service postal restart;
-sleep 5
+sleep 10
 service nginx restart;
 sleep 5
 #
