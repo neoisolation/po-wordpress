@@ -314,11 +314,9 @@ ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 #
 # nginx proxy real ip
 #
-sed '/^.*Virtual Host Configs.*$/r'<(
-    echo "        set_real_ip_from 0.0.0.0/0;"
-    echo "        real_ip_header X-Forwarded-For;"
-    echo "        real_ip_recursive on;"
-) -i -- /etc/nginx/nginx.conf;
+cd /etc/nginx
+rm -rf /etc/nginx/nginx.conf
+wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/nginx.conf
 
 sed -i -e "s/yourdomain.com/$1/g" /etc/nginx/sites-available/fast;
 
