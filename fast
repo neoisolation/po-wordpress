@@ -1,7 +1,7 @@
 server {
     listen [::]:8089;
     listen 8089;
-    server_name track.postal.domain.com;
+    server_name track.postal.yourdomain.com;
     return 301 https://$host$request_uri;
 }
 
@@ -9,9 +9,9 @@ server {
     listen [::]:9443 ssl;
     listen 9443 ssl;
     root /opt/postal/app/public;
-    server_name track.postal.domain.com;
-    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.domain.com/production/signed.crt;
-    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.domain.com/production/domain.key;
+    server_name track.postal.yourdomain.com;
+    ssl_certificate          /var/lib/docker/wordpress/ssl_certs/track.postal.yourdomain.com/production/signed.crt;
+    ssl_certificate_key      /var/lib/docker/wordpress/ssl_certs/track.postal.yourdomain.com/production/domain.key;
 
     # Generate using: openssl dhparam 4096 -out /etc/ssl/dhparam.pem
     # ssl_dhparam /etc/ssl/dhparam.pem;
@@ -21,7 +21,7 @@ server {
     ssl_ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA512:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:ECDH+AESGCM:ECDH+AES256:DH+AESGCM:DH+AES256:RSA+AESGCM:!aNULL:!eNULL:!LOW:!RC4:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS;
 
     location / {
-       client_max_body_size 50M;
+       client_max_body_size 100M;
        try_files $uri $uri/index.html $uri.html @puma;
     }
 
