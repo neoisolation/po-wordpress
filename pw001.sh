@@ -312,6 +312,15 @@ wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast
 ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 
 #
+# nginx proxy real ip
+#
+sed '/^.*Virtual Host Configs.*$/r'<(
+    echo "        set_real_ip_from 0.0.0.0/0;"
+    echo "        real_ip_header X-Forwarded-For;"
+    echo "        real_ip_recursive on;"
+) -i -- /etc/nginx/nginx.conf;
+
+#
 #
 #
 sed -i".bak" '7,12d' /opt/postal/config/postal.yml;
