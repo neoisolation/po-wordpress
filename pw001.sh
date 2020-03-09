@@ -320,6 +320,8 @@ sed '/^.*Virtual Host Configs.*$/r'<(
     echo "        real_ip_recursive on;"
 ) -i -- /etc/nginx/nginx.conf;
 
+sed -i -e "s/yourdomain.com/$1/g" /etc/nginx/sites-available/fast;
+
 #
 #
 #
