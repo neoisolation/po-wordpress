@@ -215,7 +215,7 @@ services:
           $1 -> http://172.20.128.4,
           www.$1 -> http://172.20.128.4,
           track.postal.$1 -> https://127.0.0.1:9443,
-          click.postal.$1 -> https://127.0.0.1:9443,
+          click.mail.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
           mail.$1 -> https://127.0.0.1:8443,
           postal.$1 -> https://127.0.0.1:8443
