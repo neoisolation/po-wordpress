@@ -235,6 +235,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    command: mysqld --sql-mode=NO_ENGINE_SUBSTITUTION
     networks:
       static-network:
         ipv4_address: 172.20.128.3
@@ -242,7 +243,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: klayen/wordpress-postal:1.01
+    image: klayen/wordpress-postal:1.05
     ports:
       - "8000:80"
     volumes:
