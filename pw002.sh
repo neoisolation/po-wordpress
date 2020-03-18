@@ -287,6 +287,21 @@ sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wor
 
 free -h && sudo sysctl vm.drop_caches=3 && free -h
 
+#
+# add swap
+#
+
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+free -h
+cp /etc/fstab /etc/fstab.bak
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+free -h
+sed  -i '1i vm.swappiness = 0' /etc/sysctl.conf
+sed  -i '1i vm.vfs_cache_pressure=50' /etc/sysctl.conf
+
 docker-compose up -d;
 sleep 360
 docker-compose stop;
