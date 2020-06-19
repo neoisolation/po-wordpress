@@ -69,8 +69,8 @@ gem install bundler procodile --no-rdoc --no-ri;
 # MySQL
 #
 echo 'CREATE DATABASE `postal` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;' | mysql -u root;
-echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "Rap2nord_Rek_461245++//";' | mysql -u root;
-echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "Rap2nord_Rek_461245++//";' | mysql -u root;
+echo 'GRANT ALL ON `postal`.* TO `postal`@`127.0.0.1` IDENTIFIED BY "LFr37rG3r";' | mysql -u root;
+echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED BY "LFr37rG3r";' | mysql -u root;
 
 #
 # RabbitMQ
