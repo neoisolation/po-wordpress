@@ -208,9 +208,7 @@ services:
           $1 -> http://172.20.128.4,
           www.$1 -> http://172.20.128.4,
           track.postal.$1 -> https://127.0.0.1:9443,
-          click.mail.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
-          mail.$1 -> https://127.0.0.1:8443,
           postal.$1 -> https://127.0.0.1:8443
     volumes:
       - ./conf.d:/etc/nginx/conf.d/:rw
@@ -349,10 +347,10 @@ echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
-echo '' | sudo tee -a /opt/postal/config/postal.yml;
-echo 'workers:' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  quantity: 10' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  threads: 40' | sudo tee -a /opt/postal/config/postal.yml;
+#echo '' | sudo tee -a /opt/postal/config/postal.yml;
+#echo 'workers:' | sudo tee -a /opt/postal/config/postal.yml;
+#echo '  quantity: 10' | sudo tee -a /opt/postal/config/postal.yml;
+#echo '  threads: 40' | sudo tee -a /opt/postal/config/postal.yml;
 
 su postal -c 'postal restart';
 
