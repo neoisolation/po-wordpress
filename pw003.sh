@@ -356,6 +356,10 @@ su postal -c 'postal restart';
 
 service nginx restart;
 
+cd /etc/mysql;
+mv my.cnf mycnfold;
+wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.cnf;
+service mysql restart;
 #
 # All done
 #
