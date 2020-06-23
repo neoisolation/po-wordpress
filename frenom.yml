@@ -1,0 +1,34 @@
+login: lkbcontact@gmail.com
+password: Ele10Kha6172
+
+# list here the records you want to add/update
+record:
+  # the following will update both the A and AAAA records with your current ips (v4 and v6).
+  # If you don't have an ipv6 connection, the program'll detect it and will only update the A record (ipv4)
+  - domain: privatediscount.ga
+
+  # the following will update both your subdomain's A and AAAA records with your current ips (v4 and v6)
+  - domain: privatediscount.ga
+    name: privatediscount.ga
+
+  # here's more advanced exemples
+
+  # the following will update the AAAA record with a specified ipv6
+  - domain: privatediscount.ga
+    name: # you can omit this line
+    type: AAAA
+    target: "fd2b:1c1b:3641:1cd8::" # note that you has to quote ipv6 addresses
+    ttl: 24440
+
+  # the following will update the your subdomain's A record with your current ip (v4)
+  - domain: privatediscount.ga
+    name: mysubdomain
+    type: A
+    target: "51.158.65.000" # you can omit this line
+
+  # the following will update the your subdomain's A record with your current ip (v4)
+  - domain: privatediscount.ga
+    name: hjk
+    type: A
+    target: "51.158.65.000" # you can omit this line
+  
