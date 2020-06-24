@@ -71,7 +71,7 @@ record:
   - domain: $1
     name: 
     type: TXT
-    target: v=spf1 a mx include:spf.postal.$1 ~all # you can omit this line
+    target: v=spf1 a mx include:spf.postal.privatediscount.ml ~all # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
