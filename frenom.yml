@@ -24,10 +24,10 @@ record:
   - domain: privatediscount.ga
     name: mysubdomain
     type: A
-    target: "51.158.65.000" # you can omit this line
+    target: "51.158.65.33" # you can omit this line
 
   # the following will update the your subdomain's A record with your current ip (v4)
   - domain: privatediscount.ga
     name: hjk
     type: A
-    target: "51.158.65.000" # you can omit this lin
+    target: "51.158.65.33" # you can omit this lin
