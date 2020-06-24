@@ -1,3 +1,5 @@
+#!/bin/bash
+
 login: lkbcontact@gmail.com
 password: Ele10Kha6172
 
@@ -30,5 +32,4 @@ record:
   - domain: privatediscount.ga
     name: hjk
     type: A
-    target: "51.158.65.000" # you can omit this line
-  
+    target: "51.158.65.000" # you can omit this lin
