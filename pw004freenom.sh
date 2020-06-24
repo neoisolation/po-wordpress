@@ -4,14 +4,7 @@ password=$2;
 frenomlogin=$3;
 frenompass=$4;
 
-
-
 # freenom install
-
-#!/bin/sh
-
-domain=$1;
-
 apt-get update;
 apt install git -y;
 git clone https://github.com/dawierha/Freenom-dns-updater.git;
