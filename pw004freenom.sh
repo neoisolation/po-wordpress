@@ -69,6 +69,12 @@ record:
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
+    name: psrp
+    type: CNAME
+    target: rp.postal.$1 # you can omit this line
+    
+  # the following will update your subdomain's A record with your current ip (v4)
+  - domain: $1
     name: _DMARC
     type: A
     target: v=DMARC1; p=quarantine; rua=mailto:abuse@$1 # you can omit this line
