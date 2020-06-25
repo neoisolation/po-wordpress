@@ -63,6 +63,12 @@ record:
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
+    name: rp.postal
+    type: TXT
+    target: v=spf1 a mx include:spf.postal.$1 ~all # you can omit this line
+    
+  # the following will update your subdomain's A record with your current ip (v4)
+  - domain: $1
     name: POSTAL-RO9MOV._DOMAINKEY
     type: TXT
     target: v=DKIM1; t=s; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGCaSFpYj86cSSJpyQhs505MGoPdtfvgBryr2jlRppEQfJXkEP8uG39iLDvoLogyHNaYzsbVJL/3HBb80fnTxlYA454WMUZ0ndnnQ9Ue9AGA3Sd7tVPqaRyX0epZ2zA2/Yy+CJ5nEebt6apeUyGCGyiw+uRvnx/o0KzKk8uGPgTQIDAQAB; # you can omit this line
@@ -76,7 +82,7 @@ record:
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: _DMARC
-    type: A
+    type: TXT
     target: v=DMARC1; p=quarantine; rua=mailto:abuse@$1 # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
