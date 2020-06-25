@@ -75,6 +75,13 @@ record:
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
+    name:
+    type: MX
+    target: postal.$1 # you can omit this line
+    Priority: 10
+
+  # the following will update your subdomain's A record with your current ip (v4)
+  - domain: $1
     name: routes.postal
     type: MX
     target: postal.$1 # you can omit this line
