@@ -34,38 +34,26 @@ record:
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: click
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: postal
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: psrp
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: rp.postal
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: spf.postal
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: track.postal
-    type: A
-    target: auto # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
