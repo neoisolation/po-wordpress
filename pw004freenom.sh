@@ -413,8 +413,6 @@ service docker restart;
 sleep 10
 su postal -c 'postal restart';
 sleep 5
-postal make-user;
-sleep 5
 service postal restart;
 sleep 10
 service nginx restart;
@@ -461,6 +459,8 @@ cd /etc/mysql;
 mv my.cnf mycnfold;
 wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.cnf;
 service mysql restart;
+
+postal make-user;
 #
 # All done
 #
