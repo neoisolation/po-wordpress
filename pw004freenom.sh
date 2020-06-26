@@ -90,7 +90,7 @@ record:
     name:
     type: MX
     target: postal.$1 # you can omit this line
-    Priority: 10
+    priority: 10
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
