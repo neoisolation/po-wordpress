@@ -291,7 +291,7 @@ free -h && sudo sysctl vm.drop_caches=3 && free -h
 # add swap
 #
 
-fallocate -l 2G /swapfile;
+fallocate -l 4G /swapfile;
 chmod 600 /swapfile;
 mkswap /swapfile;
 swapon /swapfile;
