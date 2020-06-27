@@ -1,8 +1,10 @@
 #!/bin/sh
+
 domaine=$1;
 frenomlogin=$2;
 frenompass=$3;
 
+echo "
 login: $2
 password: $3
 # list here the records you want to add/update
