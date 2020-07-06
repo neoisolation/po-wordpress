@@ -456,7 +456,8 @@ echo '' | sudo tee -a /etc/sysctl.d/99-sysctl.conf;
 echo 'net.ipv6.conf.all.disable_ipv6 = 1' | sudo tee -a /etc/sysctl.d/99-sysctl.conf;
 echo 'net.ipv6.conf.default.disable_ipv6 = 1' | sudo tee -a /etc/sysctl.d/99-sysctl.conf;
 echo 'net.ipv6.conf.lo.disable_ipv6 = 1' | sudo tee -a /etc/sysctl.d/99-sysctl.conf;
-sysctl -psu postal -c 'postal restart';
+sysctl -p;
+su postal -c 'postal restart';
 
 service nginx restart;
 
