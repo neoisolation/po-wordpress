@@ -54,6 +54,10 @@ record:
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: track.postal
+    
+  # the following will update your subdomain's A record with your current ip (v4)
+  - domain: $1
+    name: selenoid
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
@@ -311,7 +315,8 @@ services:
           www.$1 -> http://172.20.128.4,
           track.postal.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
-          postal.$1 -> https://127.0.0.1:8443
+          postal.$1 -> https://127.0.0.1:8443,
+          selenoid.$1 -> http://172.20.128.4
     volumes:
       - ./conf.d:/etc/nginx/conf.d/:rw
       - ./ssl_certs:/var/lib/https-portal:rw
