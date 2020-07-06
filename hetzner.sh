@@ -136,6 +136,7 @@ firewall-cmd --add-port=3306/tcp --permanent;
 firewall-cmd --add-port=8000/tcp --permanent;
 firewall-cmd --add-port=8082/tcp --permanent;
 firewall-cmd --add-port=8080/tcp --permanent;
+firewall-cmd --add-port=8088/tcp --permanent;
 firewall-cmd --add-port=8443/tcp --permanent;
 firewall-cmd --add-port=5000/tcp --permanent;
 firewall-cmd --add-port=8089/tcp --permanent;
@@ -390,7 +391,7 @@ free -h && sudo sysctl vm.drop_caches=3 && free -h
 # add swap
 #
 
-fallocate -l 4G /swapfile;
+fallocate -l 2G /swapfile;
 chmod 600 /swapfile;
 mkswap /swapfile;
 swapon /swapfile;
@@ -422,7 +423,7 @@ sleep 5
 #
 chmod 777 /var/lib/docker/wordpress/wp-content;
 cd /etc/nginx/sites-available;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast
+wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast1
 ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 
 #
@@ -443,7 +444,7 @@ echo '' | sudo tee -a /opt/postal/config/postal.yml;
 echo 'fast_server:' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  enabled: true' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  bind_address: 127.0.0.1' | sudo tee -a /opt/postal/config/postal.yml;
-echo '  port: 8080' | sudo tee -a /opt/postal/config/postal.yml;
+echo '  port: 8088' | sudo tee -a /opt/postal/config/postal.yml;
 echo '  ssl_port: 11443' | sudo tee -a /opt/postal/config/postal.yml;
 
 echo '' | sudo tee -a /etc/sysctl.d/99-sysctl.conf;
