@@ -411,7 +411,7 @@ sed  -i '1i vm.vfs_cache_pressure=50' /etc/sysctl.conf;
 free -h && sudo sysctl vm.drop_caches=3 && free -h;
 
 docker-compose up -d;
-sleep 360
+sleep 300
 docker-compose stop;
 sleep 10
 docker-compose up -d;
@@ -468,6 +468,13 @@ wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.c
 service mysql restart;
 
 command hostnamectl set-hostname $1;
+
+mkdir /var/lib/docker/selenoid;
+cd /var/lib/docker/selenoid;
+curl -s https://aerokube.com/cm/bash | bash;
+./cm selenoid start --vnc;
+./cm selenoid-ui start;
+
 postal make-user;
 
 
