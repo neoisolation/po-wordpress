@@ -147,6 +147,7 @@ firewall-cmd --add-port=8089/tcp --permanent;
 firewall-cmd --add-port=9443/tcp --permanent;
 firewall-cmd --add-port=11443/tcp --permanent;
 firewall-cmd --add-port=783/tcp --permanent;
+firewall-cmd --add-port=4444/tcp --permanent;
 
 firewall-cmd --add-masquerade --permanent;
 firewall-cmd --add-forward-port=port=2525:proto=tcp:toport=25 --permanent;
@@ -316,7 +317,7 @@ services:
           track.postal.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
           postal.$1 -> https://127.0.0.1:8443,
-          selenoid.$1 -> http://172.20.128.4
+          selenoid.$1 -> http://172.17.0.3:8080
     volumes:
       - ./conf.d:/etc/nginx/conf.d/:rw
       - ./ssl_certs:/var/lib/https-portal:rw
@@ -466,9 +467,10 @@ mv my.cnf mycnfold;
 wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.cnf;
 service mysql restart;
 
+command hostnamectl set-hostname $1;
 postal make-user;
 
-command hostnamectl set-hostname $1
+
 
 #
 # All done
