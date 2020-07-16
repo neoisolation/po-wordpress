@@ -316,8 +316,7 @@ services:
           www.$1 -> http://172.20.128.4,
           track.postal.$1 -> https://127.0.0.1:9443,
           click.$1 -> https://127.0.0.1:9443,
-          postal.$1 -> https://127.0.0.1:8443,
-          selenoid.$1 -> http://172.17.0.3:8080
+          postal.$1 -> https://127.0.0.1:8443
     volumes:
       - ./conf.d:/etc/nginx/conf.d/:rw
       - ./ssl_certs:/var/lib/https-portal:rw
@@ -342,7 +341,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: klayen/wordpress-postal:1.06
+    image: klayen/wordpress-postal:1.07
     ports:
       - "8000:80"
     volumes:
@@ -470,10 +469,10 @@ service mysql restart;
 command hostnamectl set-hostname $1;
 
 mkdir /var/lib/docker/selenoid;
-cd /var/lib/docker/selenoid;
-curl -s https://aerokube.com/cm/bash | bash;
-./cm selenoid start --vnc;
-./cm selenoid-ui start;
+# cd /var/lib/docker/selenoid;
+# curl -s https://aerokube.com/cm/bash | bash;
+# ./cm selenoid start --vnc;
+# ./cm selenoid-ui start;
 
 postal make-user;
 
