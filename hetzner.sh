@@ -468,15 +468,18 @@ service mysql restart;
 
 command hostnamectl set-hostname $1;
 
-mkdir /var/lib/docker/selenoid;
-# cd /var/lib/docker/selenoid;
-# curl -s https://aerokube.com/cm/bash | bash;
-# ./cm selenoid start --vnc;
-# ./cm selenoid-ui start;
+cd /var/lib/docker;
+git clone https://github.com/layen67/selenium.git;
+cd /var/lib/docker/selenium;
+docker pull selenoid/vnc:chrome_80.0;
+docker-compose up -d;
+
+cd /var/lib/docker/wordpress/wp-content;
+wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.zip;
+unzip InspireTrust.zip;
+rm -rf InspireTrust.zip;
 
 postal make-user;
-
-
 
 #
 # All done
