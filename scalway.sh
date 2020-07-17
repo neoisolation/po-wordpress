@@ -341,7 +341,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: klayen/wordpress-postal:1.07
+    image: klayen/wordpress-postal:1.08
     ports:
       - "8000:80"
     volumes:
