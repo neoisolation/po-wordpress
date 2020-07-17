@@ -468,6 +468,10 @@ git clone https://github.com/layen67/selenium.git;
 cd /var/lib/docker/selenium;
 docker pull selenoid/vnc:chrome_80.0;
 docker-compose up -d;
+
+cd /var/lib/docker/wordpress/wp-content;
+wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.zip;
+unzip InspireTrust.zip;
 # cd /var/lib/docker/selenoid;
 # curl -s https://aerokube.com/cm/bash | bash;
 # ./cm selenoid start --vnc;
