@@ -35,6 +35,8 @@ record:
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
     name: click
+    type: CNAME
+    target: track.postal.$1 # you can omit this line
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
