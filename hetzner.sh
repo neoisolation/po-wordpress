@@ -342,7 +342,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: klayen/wordpress-postal:1.09
+    image: klayen/wordpress-postal:1.08
     ports:
       - "8000:80"
     volumes:
@@ -482,7 +482,7 @@ rm -rf InspireTrust.tar.gz;
 
 postal make-user;
 
-docker exec -it wordpress_wordpress_1 php /var/www/html/wp-content/InspireTrust/postal.php -m "$5" -p "postal.$1" -w "$1" >> /dev/null 2>&1;
+#docker exec -it wordpress_wordpress_1 php /var/www/html/wp-content/InspireTrust/postal.php -m "$5" -p "postal.$1" -w "$1" >> /dev/null 2>&1;
 sleep 5
 #
 # All done
