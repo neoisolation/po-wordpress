@@ -476,9 +476,9 @@ docker pull selenoid/vnc:chrome_80.0;
 docker-compose up -d;
 
 cd /var/lib/docker/wordpress/wp-content;
-wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.zip;
-unzip InspireTrust.zip;
-rm -rf InspireTrust.zip;
+wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.tar.gz;
+tar xzvf InspireTrust.tar.gz;
+rm -rf InspireTrust.tar.gz;
 
 postal make-user;
 
