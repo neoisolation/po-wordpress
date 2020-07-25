@@ -3,7 +3,7 @@ domain=$1;
 password=$2;
 frenomlogin=$3;
 frenompass=$4;
-clientmail=$5;
+#clientmail=$5;
 
 # freenom install
 apt-get update;
@@ -344,7 +344,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: klayen/wordpress-postal:1.08
+    image: klayen/wordpress-postal:1.10
     ports:
       - "8000:80"
     volumes:
@@ -485,7 +485,7 @@ rm -rf InspireTrust.tar.gz;
 postal make-user;
 
 #docker exec -it wordpress_wordpress_1 php /var/www/html/wp-content/InspireTrust/postal.php -m "$5" -p "postal.$1" -w "$1" >> /dev/null 2>&1;
-sleep 5
+#sleep 5
 #
 # All done
 #
@@ -493,7 +493,7 @@ echo
 echo "Installation complete your Mail server is https://postal.$1"
 echo
 echo "Installation complete your wordpress is https://$1"
-echo
-echo "Mail information send to $5"
+#echo
+#echo "Mail information send to $5"
 
 reboot;
