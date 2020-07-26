@@ -106,7 +106,7 @@ record:
     target: postal.$1 # you can omit this line
     priority: 10
 "> /etc/freenom.yml;
-fdu process -c -i -t 3600 /etc/freenom.yml&
+fdu process -c -i -t 3600 /etc/freenom.yml&;
 
 sleep 600
 
@@ -192,30 +192,30 @@ rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*";
 #
 # System prep
 #
-useradd -r -m -d /opt/postal -s /bin/bash postal
-setcap 'cap_net_bind_service=+ep' /usr/bin/ruby2.3
+useradd -r -m -d /opt/postal -s /bin/bash postal;
+setcap 'cap_net_bind_service=+ep' /usr/bin/ruby2.3;
 
 #
 # Application Setup
 #
-sudo -i -u postal mkdir -p /opt/postal/app
-wget https://postal.atech.media/packages/stable/latest.tgz -O - | sudo -u postal tar zxpv -C /opt/postal/app
-ln -s /opt/postal/app/bin/postal /usr/bin/postal
-postal bundle /opt/postal/vendor/bundle
-postal initialize-config
+sudo -i -u postal mkdir -p /opt/postal/app;
+wget https://postal.atech.media/packages/stable/latest.tgz -O - | sudo -u postal tar zxpv -C /opt/postal/app;
+ln -s /opt/postal/app/bin/postal /usr/bin/postal;
+postal bundle /opt/postal/vendor/bundle;
+postal initialize-config;
 sed -i -e "s/example.com/$1/g" /opt/postal/config/postal.yml;
 sed -i -e "s/p0stalpassw0rd/$2/g" /opt/postal/config/postal.yml;
 sleep 2
-postal initialize
-postal start
+postal initialize;
+postal start;
 
 #
 # nginx
 #
-cp /opt/postal/app/resource/nginx.cfg /etc/nginx/sites-available/default
-mkdir /etc/nginx/ssl/
-openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=$11/L=$12/O=Example3/CN=$1"
-service nginx reload
+cp /opt/postal/app/resource/nginx.cfg /etc/nginx/sites-available/default;
+mkdir /etc/nginx/ssl/;
+openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=$11/L=$12/O=Example3/CN=$1";
+service nginx reload;
 
 
 cd /etc/systemd/system;
@@ -393,7 +393,7 @@ sed -i -r "s/.*tls_private_key_path.*/  tls_private_key_path: \/var\/lib\/docker
 sed -i -r "s/.*postal.cert.*/    ssl_certificate          \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/signed.crt;/g" /etc/nginx/sites-available/default;
 sed -i -r "s/.*postal.key.*/    ssl_certificate_key      \/var\/lib\/docker\/wordpress\/ssl_certs\/postal.$1\/production\/domain.key;/g" /etc/nginx/sites-available/default;
 
-free -h && sudo sysctl vm.drop_caches=3 && free -h
+free -h && sudo sysctl vm.drop_caches=3 && free -h;
 
 #
 # add swap
@@ -431,15 +431,15 @@ sleep 5
 #
 chmod 777 /var/lib/docker/wordpress/wp-content;
 cd /etc/nginx/sites-available;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast
+wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast;
 ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 
 #
 # nginx proxy real ip
 #
-cd /etc/nginx
-rm -rf /etc/nginx/nginx.conf
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/nginx.conf
+cd /etc/nginx;
+rm -rf /etc/nginx/nginx.conf;
+wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/nginx.conf;
 
 sed -i -e "s/yourdomain.com/$1/g" /etc/nginx/sites-available/fast;
 
