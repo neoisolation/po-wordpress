@@ -43,10 +43,6 @@ record:
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
-    name: psrp
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
     name: rp.postal
 
   # the following will update your subdomain's A record with your current ip (v4)
