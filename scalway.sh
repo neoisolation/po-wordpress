@@ -465,24 +465,21 @@ service mysql restart;
 
 command hostnamectl set-hostname $1;
 
-#cd /var/lib/docker;
-#git clone https://github.com/layen67/selenium.git;
-#cd /var/lib/docker/selenium;
-#docker pull selenoid/vnc:chrome_80.0;
-#docker-compose up -d;
+cd /var/lib/docker;
+git clone https://github.com/layen67/selenium.git;
+cd /var/lib/docker/selenium;
+docker pull selenoid/vnc:chrome_80.0;
+docker-compose up -d;
 
-#cd /var/lib/docker/wordpress/wp-content;
-#wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.zip;
-#unzip InspireTrust.zip;
-# cd /var/lib/docker/selenoid;
-# curl -s https://aerokube.com/cm/bash | bash;
-# ./cm selenoid start --vnc;
-# ./cm selenoid-ui start;
+cd /var/lib/docker/wordpress/wp-content;
+wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.tar.gz;
+tar xzvf InspireTrust.tar.gz;
+rm -rf InspireTrust.tar.gz;
 
 postal make-user;
 
-
-
+#docker exec -it wordpress_wordpress_1 php /var/www/html/wp-content/InspireTrust/postal.php -m "$5" -p "postal.$1" -w "$1" >> /dev/null 2>&1;
+#sleep 5
 #
 # All done
 #
@@ -490,5 +487,7 @@ echo
 echo "Installation complete your Mail server is https://postal.$1"
 echo
 echo "Installation complete your wordpress is https://$1"
+#echo
+#echo "Mail information send to $5"
 
 reboot;
