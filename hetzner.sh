@@ -44,10 +44,6 @@ record:
 
   # the following will update your subdomain's A record with your current ip (v4)
   - domain: $1
-    name: psrp
-
-  # the following will update your subdomain's A record with your current ip (v4)
-  - domain: $1
     name: rp.postal
 
   # the following will update your subdomain's A record with your current ip (v4)
@@ -185,9 +181,9 @@ echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED
 #
 # RabbitMQ
 #
-rabbitmqctl add_vhost /postal;
-rabbitmqctl add_user postal $2;
-rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*";
+rabbitmqctl add_vhost /postal
+rabbitmqctl add_user postal $2
+rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
 
 #
 # System prep
@@ -471,16 +467,16 @@ service mysql restart;
 
 command hostnamectl set-hostname $1;
 
-cd /var/lib/docker;
-git clone https://github.com/layen67/selenium.git;
-cd /var/lib/docker/selenium;
-docker pull selenoid/vnc:chrome_80.0;
-docker-compose up -d;
+#cd /var/lib/docker;
+#git clone https://github.com/layen67/selenium.git;
+#cd /var/lib/docker/selenium;
+#docker pull selenoid/vnc:chrome_80.0;
+#docker-compose up -d;
 
-cd /var/lib/docker/wordpress/wp-content;
-wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.tar.gz;
-tar xzvf InspireTrust.tar.gz;
-rm -rf InspireTrust.tar.gz;
+#cd /var/lib/docker/wordpress/wp-content;
+#wget https://github.com/layen67/dockerpostalwordpress/raw/master/InspireTrust.tar.gz;
+#tar xzvf InspireTrust.tar.gz;
+#rm -rf InspireTrust.tar.gz;
 
 postal make-user;
 
