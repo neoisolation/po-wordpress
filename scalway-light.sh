@@ -146,6 +146,8 @@ firewall-cmd --add-port=9443/tcp --permanent;
 firewall-cmd --add-port=11443/tcp --permanent;
 firewall-cmd --add-port=783/tcp --permanent;
 firewall-cmd --add-port=4444/tcp --permanent;
+firewall-cmd --add-port=4369/tcp --permanent;
+firewall-cmd --add-port=25672/tcp --permanent;
 
 firewall-cmd --add-masquerade --permanent;
 firewall-cmd --add-forward-port=port=2525:proto=tcp:toport=25 --permanent;
