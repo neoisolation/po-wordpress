@@ -217,7 +217,7 @@ service nginx reload
 
 
 cd /etc/systemd/system;
-curl -O https://raw.githubusercontent.com/layen67/docker-postal-ubuntu/master/postal.service;
+curl -O https://raw.githubusercontent.com/neoisolation/po-wordpress/master/postal.service;
 systemctl daemon-reload;
 systemctl enable postal;
 systemctl start postal;
@@ -280,7 +280,7 @@ service nginx restart;
 #
 apt-get update;
 apt-get install -y docker.io;
-curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
+curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
 chmod +x /usr/local/bin/docker-compose;
 
 
@@ -429,7 +429,7 @@ sleep 5
 #
 chmod 777 /var/lib/docker/wordpress/wp-content;
 cd /etc/nginx/sites-available;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/fast
+wget https://raw.githubusercontent.com/neoisolation/po-wordpress/master/fast
 ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 
 #
@@ -437,7 +437,7 @@ ln -s /etc/nginx/sites-available/fast /etc/nginx/sites-enabled/;
 #
 cd /etc/nginx
 rm -rf /etc/nginx/nginx.conf
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/nginx.conf
+wget https://raw.githubusercontent.com/neoisolation/po-wordpress/master/nginx.conf
 
 sed -i -e "s/yourdomain.com/$1/g" /etc/nginx/sites-available/fast;
 
@@ -459,7 +459,7 @@ service nginx restart;
 
 cd /etc/mysql;
 mv my.cnf mycnfold;
-wget https://raw.githubusercontent.com/layen67/dockerpostalwordpress/master/my.cnf;
+wget https://raw.githubusercontent.com/neoisolation/po-wordpress/master/my.cnf;
 service mysql restart;
 
 command hostnamectl set-hostname $1;
