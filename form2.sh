@@ -482,5 +482,6 @@ echo
 echo "Installation complete your Mail server is https://postal.$domainname"
 echo
 echo "Installation complete your wordpress is https://$domainname"
-
+echo
+echo "Msql Password:   $PASS"
 reboot;
