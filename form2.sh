@@ -1,15 +1,8 @@
 #!/bin/sh
 
-
-echo "##### Please enter domain  ######"
-echo "     Example: domain.com or your.domain.com     "
-read domainname
-echo "##### Please enter your Freenom.com email login #####"
-echo "     Example: jean@gmail.com     "
-read freenomlogin
-echo "##### Please enter your Freenom.com password #####"
-echo "     Example: hgfGhhHj6     "
-read freenompass
+read -p "Please enter domain:" domainname
+read -p "Please enter your Freenom.com email login:" Freenomloginpw
+read -p "Please enter your Freenom.com password:" Freenompasspw
 PASS=`pwgen -s 40 1`
 
 
