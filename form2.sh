@@ -5,7 +5,7 @@ read -p "Please enter domain:" domainpasspw
 read -p "Please enter your Freenom.com email login:" Freenomloginpw
 read -p "Please enter your Freenom.com password:" Freenompasspw
 
-
+command hostnamectl set-hostname $domainname;
 # freenom install
 apt-get update;
 apt install git -y;
@@ -21,7 +21,7 @@ python3 setup.py install;
 
 echo "
 login: $Freenomloginpw
-password: $Freenompw
+password: $Freenompasspw
 
 # list here the records you want to add/update
 record:
@@ -105,7 +105,7 @@ record:
 "> /etc/freenom.yml;
 fdu process -c -i -t 3600 /etc/freenom.yml&
 
-# sleep 600
+sleep 600
 
 # This will install everything required to run a basic Postal installation.
 # This should be run on a clean Ubuntu 16.04 server.
@@ -214,7 +214,7 @@ postal start
 #
 cp /opt/postal/app/resource/nginx.cfg /etc/nginx/sites-available/default
 mkdir /etc/nginx/ssl/
-openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=$domainname1/L=$domainname2/O=$domainname3/CN=$domainname"
+openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=$domainname1/L=$domainname2/O=Example3/CN=$domainname"
 service nginx reload
 
 
@@ -464,8 +464,6 @@ mv my.cnf mycnfold;
 wget https://raw.githubusercontent.com/neoisolation/po-wordpress/master/my.cnf;
 service mysql restart;
 
-command hostnamectl set-hostname $domainname;
-
 postal make-user;
 
 #
@@ -475,6 +473,5 @@ echo
 echo "Installation complete your Mail server is https://postal.$domainname"
 echo
 echo "Installation complete your wordpress is https://$domainname"
-echo
-echo "Msql Password:   $domainpasspw"
+
 reboot;
