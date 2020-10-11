@@ -3,7 +3,7 @@
 read -p "Please enter domain:" domainname
 read -p "Please enter your Freenom.com email login:" Freenomloginpw
 read -p "Please enter your Freenom.com password:" Freenompasspw
-PASS=`pwgen -s 40 1`
+PASS="$(openssl rand -base64 12)"
 
 
 # freenom install
