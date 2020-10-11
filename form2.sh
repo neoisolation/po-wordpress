@@ -1,7 +1,7 @@
 #!/bin/sh
 
 read -p "Please enter domain:" domainname
-read -p "Please enter domain:" domainpasspw
+read -p "Please enter Msql password:" domainpasspw
 read -p "Please enter your Freenom.com email login:" Freenomloginpw
 read -p "Please enter your Freenom.com password:" Freenompasspw
 
