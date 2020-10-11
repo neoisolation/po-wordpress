@@ -1,6 +1,7 @@
 #!/bin/sh
 
 read -p "Please enter domain:" domainname
+read -p "Please enter domain:" domainpasspw
 read -p "Please enter your Freenom.com email login:" Freenomloginpw
 read -p "Please enter your Freenom.com password:" Freenompasspw
 
@@ -185,7 +186,7 @@ echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED
 # RabbitMQ
 #
 rabbitmqctl add_vhost /postal
-rabbitmqctl add_user postal $PASS
+rabbitmqctl add_user postal $domainpasspw
 rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
 
 #
@@ -203,7 +204,7 @@ ln -s /opt/postal/app/bin/postal /usr/bin/postal
 postal bundle /opt/postal/vendor/bundle
 postal initialize-config
 sed -i -e "s/example.com/$domainname/g" /opt/postal/config/postal.yml;
-sed -i -e "s/p0stalpassw0rd/$PASS/g" /opt/postal/config/postal.yml;
+sed -i -e "s/p0stalpassw0rd/$domainpasspw/g" /opt/postal/config/postal.yml;
 sleep 2
 postal initialize
 postal start
@@ -331,10 +332,10 @@ services:
       - ./db_data:/var/lib/mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: $PASS
+      MYSQL_ROOT_PASSWORD: $domainpasspw
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: $PASS
+      MYSQL_PASSWORD: $domainpasspw
     command: mysqld --sql-mode=NO_ENGINE_SUBSTITUTION
     networks:
       static-network:
@@ -353,7 +354,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: $PASS
+      WORDPRESS_DB_PASSWORD: $domainpasspw
       WORDPRESS_CONFIG_EXTRA: |
         /* Site URL */
         define('WP_HOME', 'https://$domainname');     # <-- CHANGEME
@@ -475,5 +476,5 @@ echo "Installation complete your Mail server is https://postal.$domainname"
 echo
 echo "Installation complete your wordpress is https://$domainname"
 echo
-echo "Msql Password:   $PASS"
+echo "Msql Password:   $domainpasspw"
 reboot;
