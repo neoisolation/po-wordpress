@@ -20,8 +20,8 @@ python3 setup.py install;
 
 
 echo "
-login: $freenomlogin
-password: $freenompass
+login: $Freenomloginpw
+password: $Freenompw
 
 # list here the records you want to add/update
 record:
@@ -186,7 +186,7 @@ echo 'GRANT ALL PRIVILEGES ON `postal-%` . * to `postal`@`127.0.0.1`  IDENTIFIED
 # RabbitMQ
 #
 rabbitmqctl add_vhost /postal
-rabbitmqctl add_user postal $domainmsqlpass
+rabbitmqctl add_user postal $PASS
 rabbitmqctl set_permissions -p /postal postal ".*" ".*" ".*"
 
 #
@@ -204,7 +204,7 @@ ln -s /opt/postal/app/bin/postal /usr/bin/postal
 postal bundle /opt/postal/vendor/bundle
 postal initialize-config
 sed -i -e "s/example.com/$domainname/g" /opt/postal/config/postal.yml;
-sed -i -e "s/p0stalpassw0rd/$domainmsqlpass/g" /opt/postal/config/postal.yml;
+sed -i -e "s/p0stalpassw0rd/$PASS/g" /opt/postal/config/postal.yml;
 sleep 2
 postal initialize
 postal start
@@ -332,10 +332,10 @@ services:
       - ./db_data:/var/lib/mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: $domainmsqlpass
+      MYSQL_ROOT_PASSWORD: $PASS
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: $domainmsqlpass
+      MYSQL_PASSWORD: $PASS
     command: mysqld --sql-mode=NO_ENGINE_SUBSTITUTION
     networks:
       static-network:
@@ -354,7 +354,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: $domainmsqlpass
+      WORDPRESS_DB_PASSWORD: $PASS
       WORDPRESS_CONFIG_EXTRA: |
         /* Site URL */
         define('WP_HOME', 'https://$domainname');     # <-- CHANGEME
