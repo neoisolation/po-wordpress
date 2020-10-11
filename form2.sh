@@ -214,7 +214,7 @@ postal start
 #
 cp /opt/postal/app/resource/nginx.cfg /etc/nginx/sites-available/default
 mkdir /etc/nginx/ssl/
-openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=Manchester/L=Salford/O=COMODO/CN=$domainname"
+openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/postal.key -out /etc/nginx/ssl/postal.cert -days 365 -nodes -subj "/C=GB/ST=Manchester/L=Salford/O=COMODO/CN=freewinner.cf"
 service nginx reload
 
 
